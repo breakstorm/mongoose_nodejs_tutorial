@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+var Book = require('./models/book');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -10,7 +11,7 @@ app.use(bodyParser.json());
 // When router module doesn't use a express.router() module
 // var router = require('./routes')
 // app.use('/', router)
-var router = require('./routes')(app)
+var router = require('./routes')(app, Book);
 
 // this connection logic is deprecated as of 4.11.0
 // var db = mongoose.connection;
